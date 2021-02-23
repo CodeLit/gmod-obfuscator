@@ -1,0 +1,3 @@
+[submodule "LuaObfuscator"]
+	path = LuaObfuscator
+	url = git@github.com:jkusner/LuaObfuscator.git
