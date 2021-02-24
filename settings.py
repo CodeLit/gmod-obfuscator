@@ -17,8 +17,8 @@ cmd_file_path = DRM_DIR / 'commands.sh'
 
 ignored_files_start = '-- [do not obfuscate]'
 ignored_folders = [
-    format_path(Path('lua') / 'cw-langs'),
-    format_path(Path('lua') / 'cw-external'),
+    format_path(Path('lua') / 'cyber-langs'),
+    format_path(Path('lua') / 'cyber-external'),
 ]
 
 cl_common_file = '__cl.lua'
