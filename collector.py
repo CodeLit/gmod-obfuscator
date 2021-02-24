@@ -3,7 +3,7 @@ from pathlib import Path
 
 from files import format_path
 from LuaObfuscator.stringstripper import strip_comments, strip_multiline_comments
-from settings import ADDONS_FOLDER_ENC, sh_common_file, sv_common_file, cl_common_file, get_common_file, drm_debug, collect_file_name
+from settings import sh_common_file, sv_common_file, cl_common_file, get_common_file, drm_debug, collect_file_name
 
 output = ''
 
@@ -44,6 +44,7 @@ def collect_into_three_files(folder_path):
 # Собирает все файлы в папке в один, возвращает его
 def collect_folder(path, force=False):
     global output
+    path = Path(path)
     collect_file_path = Path(path) / collect_file_name
     cl_common_path = Path(path) / cl_common_file
     sv_common_path = Path(path) / sv_common_file

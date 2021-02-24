@@ -5,7 +5,7 @@ from pathlib import Path
 
 from settings import PYTHON_CMD
 from files import format_path, run_file
-from settings import OBF_DIR, cmd_file_path, ignored_files_start, obf_level, do_not_obfuscate, drm_debug, ignored_folders
+from settings import OBF_DIR, cmd_file_path, ignored_files_start, obf_level, do_not_obfuscate, drm_debug, ignored_folders, collect_file_name
 
 
 def obf_folder(in_folder, out_folder):
@@ -39,14 +39,15 @@ def obf_folder(in_folder, out_folder):
                 Path(encrypted_dir_path).mkdir(parents=True, exist_ok=True)
                 _, file_extension = os.path.splitext(file_name)
 
-                if file_extension == '.lua' and not do_not_obfuscate and not folder_is_in_ignored:
+                if file_extension == '.lua' and not do_not_obfuscate and not folder_is_in_ignored and not file_path.__contains__(collect_file_name):
                     fl_data = Path(file_path).read_text(encoding='utf-8-sig')
                     if fl_data.__contains__(ignored_files_start):
                         Path(enc_file_path).write_text(fl_data.replace(
                             ignored_files_start+'\n', ''), encoding='utf-8-sig')
                     else:
-                        commands += 'echo OBF [' + file_path + \
-                            '] TO LVL ' + str(obf_level) + '\n'
+                        commands += 'echo ---------- OBF [' + file_path + \
+                            '] TO LVL ' + \
+                            str(obf_level) + '\n'
                         commands += PYTHON_CMD+' ' + '__main__.py' + ' --input ' + file_path \
                             + ' --output ' + enc_file_path + ' --level ' + str(obf_level) \
                             + ' --dontcopy --debug\n'
@@ -57,8 +58,10 @@ def obf_folder(in_folder, out_folder):
 
     # ЗАПУСКАЕМ ФАЙЛИК
     cmd_file = Path(cmd_file_path)
-    if drm_debug:
-        commands += '\n sleep 1h'
+    # if drm_debug:
+    #     commands += '\n sleep 1h'
+    commands += '\n echo ------- All scripts is finished!'
+    # commands += '\n sleep 1h'
     cmd_file.write_text(commands)
     output = run_file(cmd_file, 40)
 

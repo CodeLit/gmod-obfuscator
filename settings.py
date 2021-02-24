@@ -3,7 +3,7 @@ from pathlib import Path
 from files import format_path
 
 obf_level = 2
-do_not_collect = False
+do_not_collect = True
 do_not_obfuscate = False
 
 # Debug
@@ -18,7 +18,7 @@ cmd_file_path = DRM_DIR / 'commands.sh'
 ignored_files_start = '-- [do not obfuscate]'
 ignored_folders = [
     format_path(Path('lua') / 'cyber-langs'),
-    format_path(Path('lua') / 'cyber-external'),
+    # format_path(Path('lua') / 'cyber-external'),
 ]
 
 cl_common_file = '__cl.lua'
