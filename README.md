@@ -4,6 +4,7 @@ It can easilly obfuscate the entire folders, excluding single files, and folders
 Can collect multiple files in folder to one single file.
 Detects shared, server, client files by endings.
 It should work fine with pure lua code too.
+Obfuscator core: [link](https://github.com/jkusner/LuaObfuscator)
 
 ## Usage
 
