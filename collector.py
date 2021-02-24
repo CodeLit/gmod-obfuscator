@@ -3,15 +3,14 @@ from pathlib import Path
 
 from files import format_path
 from LuaObfuscator.stringstripper import strip_comments, strip_multiline_comments
-from settings import ADDONS_FOLDER_ENC, sh_common_file, sv_common_file, cl_common_file, get_common_file, drm_debug
+from settings import ADDONS_FOLDER_ENC, sh_common_file, sv_common_file, cl_common_file, get_common_file, drm_debug, collect_file_name
 
-collect_file = '__collectfolder__.lua'
 output = ''
 
 
 def is_collectable_file(file_path):
     file_path = Path(str(file_path))
-    return file_path.suffix == '.lua' and file_path.name not in [cl_common_file, sv_common_file, sh_common_file, collect_file]
+    return file_path.suffix == '.lua' and file_path.name not in [cl_common_file, sv_common_file, sh_common_file, collect_file_name]
 
 
 # Собирает содержимое папки в три файлика
@@ -45,7 +44,7 @@ def collect_into_three_files(folder_path):
 # Собирает все файлы в папке в один, возвращает его
 def collect_folder(path, force=False):
     global output
-    collect_file_path = Path(path) / collect_file
+    collect_file_path = Path(path) / collect_file_name
     cl_common_path = Path(path) / cl_common_file
     sv_common_path = Path(path) / sv_common_file
     sh_common_path = Path(path) / sh_common_file

@@ -25,6 +25,8 @@ cl_common_file = '__cl.lua'
 sv_common_file = '__sv.lua'
 sh_common_file = '___sh.lua'
 
+collect_file_name = '__collectfolder__.lua'
+
 
 def is_cl_file(f):
     return f == 'cl.lua' or '_cl.lua' in f
